@@ -8,9 +8,17 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+            <style>
+                .alert {
+                    border-radius: 0;
+                    border: none;
+                }
+            </style>
         {% endblock %}
     </head>
     <body>
+        {% include '_flashes.html.twig' %}
+
         {% block body "" %}
 
         {% block javascripts %}

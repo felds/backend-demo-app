@@ -17,11 +17,13 @@ class LoginController extends Controller
      */
     public function indexAction(AuthenticationUtils $authUtils)
     {
-        $error = $authUtils->getLastAuthenticationError();
         $lastUsername = $authUtils->getLastUsername();
 
+        if ($error = $authUtils->getLastAuthenticationError()) {
+            $this->addFlash('warning', $error->getMessage());
+        }
+
         return $this->render('Login/index.html.twig', [
-            'error' => $error,
             'last_username' => $lastUsername,
         ]);
     }
