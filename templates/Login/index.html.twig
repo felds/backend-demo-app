@@ -8,12 +8,24 @@
     <div class="container">
         <h1 class="display-4 my-5">Entrar</h1>
 
-        <form action="{{ path('app_login_index') }}" method="POST">
-            <input type="text" name="_username">
-            <input type="password" name="_password">
+        <form action="{{ path('app_login_index') }}" name="login" method="POST" novalidate>
+            <div id="login">
+                <div class="form-group">
+                    <label class="form-control-label required" for="_username">Nome de usuário</label>
+                    <input type="text" id="_username" name="_username" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label required" for="_password">Senha</label>
+                    <input type="password" id="_password" name="_password" required="required" class="form-control">
+                </div>
+            </div>
 
+            <p class="my-5">
+                <button class="btn btn-dark">Entrar</button>
+                <a class="btn btn-link" href="{{ path('homepage') }}">Cancelar</a>
+            </p>
 
-            <button class="btn btn-dark">Entrar</button>
+            <input type="hidden" name="_token" value="{{ csrf_token('login') }}">
         </form>
     </div>
 {% endblock %}

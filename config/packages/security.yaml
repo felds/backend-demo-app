@@ -17,8 +17,10 @@ security:
             anonymous: ~
             provider: db_provider
             form_login:
-                login_path: /login
-                check_path: /login/check
+                login_path:     /login
+                check_path:     /login/check
+                csrf_parameter: _token
+                csrf_token_id:  login
             logout: ~
 
     access_control:
