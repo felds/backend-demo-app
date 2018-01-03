@@ -15,6 +15,20 @@ class RegisterController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('Register/index.html.twig', []);
+        $form = $this->createNewForm();
+
+        return $this->render('Register/index.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    private function createNewForm()
+    {
+        $builder = $this->createFormBuilder()
+            ->add('email')
+            ->add('password')
+        ;
+
+        return $builder->getForm();
     }
 }

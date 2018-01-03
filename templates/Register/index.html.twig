@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block title -%}
     Crie sua conta &ndash; {{ parent() }}
@@ -8,6 +9,6 @@
     <div class="container">
         <h1 class="display-4 my-5">Crie sua conta</h1>
 
-        
+        {{ form(form) }}
     </div>
 {% endblock %}
