@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/register")
@@ -17,14 +18,15 @@ class RegisterController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
+
         $form = $this->createForm(RegisterType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $credentials = $form->getData();
-            $user = User::fromCredentials($credentials);
+            $user = User::fromCredentials($credentials, $encoder);
 
             $em->persist($user);
             $em->flush();

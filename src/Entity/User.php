@@ -6,6 +6,7 @@ namespace App\Entity;
 use App\Model\Credentials;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -38,17 +39,18 @@ class User implements UserInterface, \Serializable, EquatableInterface
         $this->id = Uuid::uuid4();
     }
 
-    static public function fromCredentials(Credentials $credentials): self
+    static public function fromCredentials(Credentials $credentials, UserPasswordEncoderInterface $encoder): self
     {
         $obj = new static();
-        $obj->setCredentials($credentials);
+        $obj->setCredentials($credentials, $encoder);
+
         return $obj;
     }
 
-    private function setCredentials(Credentials $credentials): self
+    private function setCredentials(Credentials $credentials, UserPasswordEncoderInterface $encoder): self
     {
         $this->username = $credentials->username;
-        $this->password = $credentials->password;
+        $this->setPassword($credentials->password, $encoder);
 
         return $this;
     }
@@ -61,6 +63,13 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function setPassword(string $plainPassword, UserPasswordEncoderInterface $encoder): self
+    {
+        $this->password = $encoder->encodePassword($this, $plainPassword);
+
+        return $this;
     }
 
     public function getSalt()
