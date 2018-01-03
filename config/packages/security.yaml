@@ -4,8 +4,10 @@ security:
         App\Entity\User: bcrypt
 
     providers:
-        entity:
-
+        db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
 
     firewalls:
         dev:
@@ -13,6 +15,7 @@ security:
             security: false
         main:
             anonymous: ~
+            provider: db_provider
 
             # activate different ways to authenticate
 
