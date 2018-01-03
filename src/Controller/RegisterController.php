@@ -25,8 +25,8 @@ class RegisterController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $credentials = $form->getData();
-            $user = User::fromCredentials($credentials, $encoder);
+            $user = $form->getData();
+            $user->encodePassword($encoder);
 
             $em->persist($user);
             $em->flush();

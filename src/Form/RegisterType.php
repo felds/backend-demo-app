@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Form;
 
-use App\Model\Credentials;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -19,7 +19,7 @@ class RegisterType extends AbstractType
             ->add('username', TextType::class, [
                 'label' => "Nome de usuário",
             ])
-            ->add('password', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'label' => "Senha",
                 'type' => PasswordType::class,
                 'first_options' => ['label' => "Senha"],
@@ -36,7 +36,8 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Credentials::class,
+            'data_class' => User::class,
+            'validation_groups' => ['User', 'Registration'],
         ]);
     }
 
