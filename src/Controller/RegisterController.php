@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use App\Form\RegisterType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,20 +16,11 @@ class RegisterController extends Controller
      */
     public function indexAction()
     {
-        $form = $this->createNewForm();
+        $form = $this->createForm(RegisterType::class);
 
         return $this->render('Register/index.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    private function createNewForm()
-    {
-        $builder = $this->createFormBuilder()
-            ->add('email')
-            ->add('password')
-        ;
-
-        return $builder->getForm();
-    }
 }

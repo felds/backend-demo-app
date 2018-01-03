@@ -9,6 +9,17 @@
     <div class="container">
         <h1 class="display-4 my-5">Crie sua conta</h1>
 
-        {{ form(form) }}
+        {{ form_start(form, {attr: {novalidate: true}}) }}
+
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+
+        <p class="my-5">
+            <button class="btn btn-outline-primary">Criar</button>
+            <a class="btn btn-link" href="{{ path('homepage') }}">Cancelar</a>
+        </p>
+
+        {{ form_end(form) }}
+
     </div>
 {% endblock %}
