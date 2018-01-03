@@ -17,8 +17,9 @@ security:
             anonymous: ~
             provider: db_provider
             form_login:
-                login_path: app_login_index
-                check_path: app_login_index
+                login_path: /login
+                check_path: /login/check
+            logout: ~
 
     access_control:
         - { path: ^/login,          roles: IS_AUTHENTICATED_ANONYMOUSLY }

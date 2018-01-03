@@ -8,5 +8,12 @@
     <div class="container">
         <h1 class="display-4 my-5">Entrar</h1>
 
+        <form action="{{ path('app_login_index') }}" method="POST">
+            <input type="text" name="_username">
+            <input type="password" name="_password">
+
+
+            <button class="btn btn-dark">Entrar</button>
+        </form>
     </div>
 {% endblock %}

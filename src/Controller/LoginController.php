@@ -18,4 +18,9 @@ class LoginController extends Controller
     {
         return $this->render('Login/index.html.twig', []);
     }
+
+    /**
+     * @Route("/check")
+     */
+    public function checkAction() {}
 }

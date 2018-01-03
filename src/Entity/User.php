@@ -93,6 +93,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function serialize()
     {
         return serialize([
+            $this->id,
             $this->username,
             $this->password,
         ]);
@@ -101,9 +102,10 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function unserialize($serialized)
     {
         list (
+            $this->id,
             $this->username,
             $this->password
-        ) = $this->unserialize($serialized);
+        ) = unserialize($serialized);
     }
 
     public function isEqualTo(UserInterface $user)
