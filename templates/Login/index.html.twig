@@ -5,14 +5,20 @@
 {%- endblock %}
 
 {% block body %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+
+
     <div class="container">
         <h1 class="display-4 my-5">Entrar</h1>
 
-        <form action="{{ path('app_login_index') }}" name="login" method="POST" novalidate>
+        <form action="{{ path('app_login_check') }}" name="login" method="POST" novalidate>
             <div id="login">
                 <div class="form-group">
                     <label class="form-control-label required" for="_username">Nome de usuário</label>
-                    <input type="text" id="_username" name="_username" required="required" class="form-control">
+                    <input type="text" id="_username" name="_username" required="required" class="form-control" value="{{ last_username }}">
                 </div>
                 <div class="form-group">
                     <label class="form-control-label required" for="_password">Senha</label>

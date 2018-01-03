@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/login")
@@ -14,9 +15,15 @@ class LoginController extends Controller
     /**
      * @Route("/")
      */
-    public function indexAction()
+    public function indexAction(AuthenticationUtils $authUtils)
     {
-        return $this->render('Login/index.html.twig', []);
+        $error = $authUtils->getLastAuthenticationError();
+        $lastUsername = $authUtils->getLastUsername();
+
+        return $this->render('Login/index.html.twig', [
+            'error' => $error,
+            'last_username' => $lastUsername,
+        ]);
     }
 
     /**
