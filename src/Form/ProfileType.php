@@ -50,7 +50,10 @@ class ProfileType extends AbstractType
             if (!$file instanceof File) throw new \RuntimeException("File... wel... is not a file!");
             if (!$data instanceof User) throw new \RuntimeException("Entity should be a user.");
 
-            if ($data->getAvatar() && ($file)) {}
+            if ($data->getAvatar() && $file) {
+                @unlink($data->getAvatar()->getRealPath());
+                $data->setAvatar();
+            }
 
             if ($file) {
                 $filename = sprintf('%s.%s', uniqid(), $file->guessExtension() ?: '.png');

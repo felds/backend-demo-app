@@ -157,7 +157,9 @@ class User implements UserInterface, \Serializable, EquatableInterface
 
     public function getAvatar(): ?File
     {
-        return $this->avatar ? new File($this->avatar) : null;
+        return $this->avatar && file_exists($this->avatar) && is_readable($this->avatar)
+            ? new File($this->avatar)
+            : null;
     }
 
     public function setAvatar(?File $avatar = null): self
