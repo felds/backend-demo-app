@@ -28,11 +28,6 @@ class RegisterType extends AbstractType
         ;
     }
 
-    public function getBlockPrefix()
-    {
-        return "register";
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -42,4 +37,8 @@ class RegisterType extends AbstractType
         ]);
     }
 
+    public function getBlockPrefix()
+    {
+        return "register";
+    }
 }

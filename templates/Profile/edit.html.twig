@@ -1,0 +1,24 @@
+{% extends 'base.html.twig'%}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block title -%}
+    Edite seu perfil &ndash; {{ parent() }}
+{%- endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-4 my-5">Edite seu perfil</h1>
+
+        {{ form_start(form, {attr: {novalidate: true}}) }}
+
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+
+        <p class="my-5">
+            <button class="btn btn-dark">Editar</button>
+            <a class="btn btn-link" href="{{ path('app_profile_index') }}">Cancelar</a>
+        </p>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

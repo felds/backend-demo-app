@@ -20,6 +20,16 @@
 
         {% block body "" %}
 
+        {% if is_granted('ROLE_USER') %}
+            <div class="container text-center">
+                <hr>
+
+                <p>
+                    <a href="/logout" class="btn btn-link text-muted">Sair</a>
+                </p>
+            </div>
+        {% endif %}
+
         {% block javascripts %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

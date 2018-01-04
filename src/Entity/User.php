@@ -40,6 +40,20 @@ class User implements UserInterface, \Serializable, EquatableInterface
     private $password;
 
     /**
+     * @var ?string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Email(message="Preencha um email válido.", groups={"Profile"})
+     * @Assert\Regex("/@example\.(com|org|net)$/", message="Para sua privacidade, use um email @example.com, @example.org ou @example.net.")
+     */
+    private $email;
+
+    /**
+     * @var ?string
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $favQuote;
+
+    /**
      * @var string|null
      * @Assert\NotBlank(message="Preencha sua senha.", groups={"Registration"})
      * @Assert\Length(min=5, minMessage="Sua senha deve ter ao menos {{ limit }} caracteres.", groups={"Registration"})
@@ -102,6 +116,30 @@ class User implements UserInterface, \Serializable, EquatableInterface
             $this->username,
             $this->password,
         ]);
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email = null): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getFavQuote(): ?string
+    {
+        return $this->favQuote;
+    }
+
+    public function setFavQuote(?string $favQuote = null): self
+    {
+        $this->favQuote = $favQuote;
+
+        return $this;
     }
 
     public function unserialize($serialized)
