@@ -11,12 +11,15 @@ Meu perfil &ndash; {{ parent() }}
 
             <h2 class="display-4 text-center">{{ user }}</h2>
 
-            <p>{{ 'fulano@example.com' }}</p>
+            {% if user.email %}
+                <p>{{ user.email }}</p>
+            {% endif %}
 
-            <blockquote class="blockquote font-italic">
-                The slovenly wub might well have said: Many men
-                talk like philosophers and live like fools.
-            </blockquote>
+            {% if user.favQuote %}
+                <blockquote class="blockquote font-italic">
+                    {{ user.favQuote|nl2br }}
+                </blockquote>
+            {% endif %}
 
             <p>
                 <a href="{{ path('app_profile_edit') }}" class="btn btn-link">Editar perfil</a>

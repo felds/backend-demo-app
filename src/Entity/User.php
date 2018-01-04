@@ -50,6 +50,7 @@ class User implements UserInterface, \Serializable, EquatableInterface
     /**
      * @var ?string
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(max=280, minMessage="A citação deve ter até {{ limit }} caracteres.")
      */
     private $favQuote;
 
