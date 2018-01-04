@@ -3,7 +3,7 @@
 {% if flashes %}
     {% for context, messages in flashes %}
         {% for message in messages %}
-            <div class="alert alert-{{ context }}" role="alert">
+            <div class="alert alert-{{ context }} border-0 rounded-0" role="alert">
                 <div class="container">{{ message|trans|raw }}</div>
             </div>
         {% endfor %}

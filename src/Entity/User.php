@@ -51,6 +51,11 @@ class User implements UserInterface, \Serializable, EquatableInterface
         $this->id = Uuid::uuid4();
     }
 
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     public function getRoles()
     {
         return ['ROLE_USER'];

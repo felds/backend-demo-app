@@ -6,31 +6,20 @@ Meu perfil &ndash; {{ parent() }}
 
 {% block body %}
     <div class="container py-5">
-        <img src="https://unsplash.it/120/120" alt="" class="img-thumbnail rounded-circle mx-auto d-block mb-2">
+        <div class="text-center">
+            <img src="https://unsplash.it/120/120" alt="" class="img-thumbnail rounded-circle mb-2">
+            <h2 class="display-4 text-center">{{ user }}</h2>
+            <p>{{ 'fulano@example.com' }}</p>
 
-        <h2 class="display-4 text-center">
-            {{ user.username }}
-        </h2>
-
-        <dl class="dl-horizontal">
-            <dt>Email</dt>
-            <dd>fulano@example.org</dd>
-
-            <dt>Citação preferida</dt>
-            <dd>
-                <blockquote class="font-italic">
-                    The slovenly wub might well have said: Many men
-                    talk like philosophers and live like fools.
-                </blockquote>
-            </dd>
-        </dl>
+            <blockquote class="blockquote font-italic">
+                The slovenly wub might well have said: Many men
+                talk like philosophers and live like fools.
+            </blockquote>
+        </div>
 
         <hr class="mt-5 mb-2">
         <p class="text-center">
             <a href="#" class="btn btn-link">Editar perfil</a>
         </p>
-
-
-
     </div>
 {% endblock %}
