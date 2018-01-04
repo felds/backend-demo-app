@@ -6,6 +6,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -55,6 +56,12 @@ class User implements UserInterface, \Serializable, EquatableInterface
     private $favQuote;
 
     /**
+     * @var ?string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $avatar;
+
+    /**
      * @var string|null
      * @Assert\NotBlank(message="Preencha sua senha.", groups={"Registration"})
      * @Assert\Length(min=5, minMessage="Sua senha deve ter ao menos {{ limit }} caracteres.", groups={"Registration"})
@@ -69,6 +76,11 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function __toString()
     {
         return $this->getUsername();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getRoles()
@@ -139,6 +151,18 @@ class User implements UserInterface, \Serializable, EquatableInterface
     public function setFavQuote(?string $favQuote = null): self
     {
         $this->favQuote = $favQuote;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?File
+    {
+        return $this->avatar ? new File($this->avatar) : null;
+    }
+
+    public function setAvatar(?File $avatar = null): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }

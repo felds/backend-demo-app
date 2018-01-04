@@ -7,12 +7,19 @@ Meu perfil &ndash; {{ parent() }}
 {% block body %}
     <div class="container py-5">
         <div class="text-center">
-            <img src="https://unsplash.it/120/120" alt="" class="img-thumbnail rounded-circle mb-2">
+            {% if user.avatar %}
+                <div class="img-thumbnail rounded-circle mb-5 mx-auto"
+                     style="
+                         width: 200px; height: 200px;
+                         background-size: cover;
+                         background-position: center center;
+                         background-image: url({{ asset(user.avatar|public_path) }})"></div>
+            {% endif %}
 
             <h2 class="display-4 text-center">{{ user }}</h2>
 
             {% if user.email %}
-                <p>{{ user.email }}</p>
+                <p class="mb-5">{{ user.email }}</p>
             {% endif %}
 
             {% if user.favQuote %}
