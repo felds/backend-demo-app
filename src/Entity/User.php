@@ -14,6 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
+ * @ORM\Table(name="app_user")
  * @UniqueEntity(fields={"username"}, message="Este nome de usuário já está em uso.")
  */
 class User implements UserInterface, \Serializable, EquatableInterface
