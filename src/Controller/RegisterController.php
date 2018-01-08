@@ -2,8 +2,7 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use App\Entity\User;
-use App\Form\ProfileType;
+use App\Form\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +20,7 @@ class RegisterController extends Controller
     public function indexAction(Request $request, EntityManagerInterface $em, UserPasswordEncoderInterface $encoder)
     {
 
-        $form = $this->createForm(ProfileType::class);
+        $form = $this->createForm(RegisterType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
