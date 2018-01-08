@@ -62,6 +62,27 @@ class User implements UserInterface, \Serializable, EquatableInterface
     private $avatar;
 
     /**
+     *  @Assert\Image(
+     *     maxSize="1M",
+     *     minWidth=50,
+     *     maxWidth=500,
+     *     minHeight=50,
+     *     maxHeight=500,
+     *     detectCorrupted=true,
+     *     maxSizeMessage="A imagem deve ter até {{ limit }} {{ suffix }}.",
+     *     mimeTypesMessage="A imagem deve ser no formato PNG.",
+     *     mimeTypesMessage="Esta não é uma imagem válida.",
+     *     sizeNotDetectedMessage="O tamanho da imagem não pode ser detectado.",
+     *     maxWidthMessage="A imagem deve ter até {{ max_width }} pixels de largura.",
+     *     minWidthMessage="A imagem deve mais de {{ min_width }} pixels de largura.",
+     *     maxHeightMessage="A imagem deve ter até {{ max_height }} pixels de altura.",
+     *     minHeightMessage="A imagem deve mais de {{ min_height }} pixels de altura.",
+     *     corruptedMessage="A imagem parece estar corrompida.",
+     * )
+     */
+    public $avatarFile;
+
+    /**
      * @var string|null
      * @Assert\NotBlank(message="Preencha sua senha.", groups={"Registration"})
      * @Assert\Length(min=5, minMessage="Sua senha deve ter ao menos {{ limit }} caracteres.", groups={"Registration"})

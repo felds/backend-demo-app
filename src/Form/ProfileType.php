@@ -31,7 +31,6 @@ class ProfileType extends AbstractType
         $builder
             ->add('avatarFile', FileType::class, [
                 'label' => "Avatar",
-                'mapped' => false,
             ])
             ->add('email', EmailType::class, [
                 'label' => "Email",
@@ -42,7 +41,9 @@ class ProfileType extends AbstractType
         ;
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
-            $file = $event->getForm()->get('avatarFile')->getData();
+            $file = $event->getForm()->get('avatarFile')->isValid()
+                ? $event->getForm()->get('avatarFile')->getData()
+                : null;
             $data = $event->getData();
 
             if (!$file) return;
